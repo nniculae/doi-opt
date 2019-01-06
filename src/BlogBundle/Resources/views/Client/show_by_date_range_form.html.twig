@@ -1,0 +1,18 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Show clients{% endblock %}
+
+
+{% block body %}
+
+    {% block form_date_range %}
+        <h1>Clients</h1>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    {% endblock %}
+    <hr>
+    {% block no_records %}
+        <h3>No records found. Try another date range.</h3>
+    {% endblock %}
+{% endblock %}
