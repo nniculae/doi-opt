@@ -5,7 +5,7 @@
     {% block form_date_range %}
         {{ parent() }}
     {% endblock %}
-    {% block no_records %}
+    {% block records_feedback %}
         <h3>({{ clients | length }}) clients found.</h3>
     {% endblock %}
     <table>
