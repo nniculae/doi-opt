@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class Form2Type extends AbstractType
 {
@@ -16,23 +17,36 @@ class Form2Type extends AbstractType
      * @var TokenStorageInterface
      */
     private $tokenStorage;
+    /**
+     * @var AuthorizationCheckerInterface
+     */
+    private $authorizationChecker;
 
     /**
      * Form2Type constructor.
      * @param TokenStorageInterface $tokenStorage
+     * @param AuthorizationCheckerInterface $authorizationChecker
      */
-    public function __construct(TokenStorageInterface $tokenStorage)
+    public function __construct(TokenStorageInterface $tokenStorage, AuthorizationCheckerInterface $authorizationChecker)
     {
         $this->tokenStorage = $tokenStorage;
+
+        $this->authorizationChecker = $authorizationChecker;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-         dump($this->tokenStorage->getToken());
+//         dump($this->tokenStorage->getToken());
         $builder->add('firstName');
         // grab the user, do a quick sanity check that one exists
         $user = $this->tokenStorage->getToken()->getUser();
 //        $this->tokenStorage->getToken()->
+
+        if(! $this->authorizationChecker->isGranted('ROLE_ADMIN')){
+           dump('nu e admin');
+           // modify builder
+        }
+
 
 
         if (!$user) {
