@@ -22,22 +22,4 @@ class ClientType extends AbstractType
 
         ]);
     }
-
-//    /**
-//     * {@inheritdoc}
-//     */
-//    public function configureOptions(OptionsResolver $resolver)
-//    {
-//        $resolver->setDefaults(array(
-//            'data_class' => 'BlogBundle\Entity\Client'
-//        ));
-//    }
-//
-//    /**
-//     * {@inheritdoc}
-//     */
-//    public function getBlockPrefix()
-//    {
-//        return 'blogbundle_client';
-//    }
 }

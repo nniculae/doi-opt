@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+
+{% block title %} All Clients {% endblock %}
+{% block body %}
+<h1>Clients</h1>
+    <ul>
+        {% for client in clients %}
+        <li> {{ client.id}}: {{ client.firstName }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

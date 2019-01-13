@@ -3,6 +3,7 @@
 namespace BlogBundle\Repository;
 
 use BlogBundle\Entity\Client;
+use Doctrine\Common\Collections\Criteria;
 
 /**
  * ClientRepository
@@ -29,5 +30,22 @@ class ClientRepository extends \Doctrine\ORM\EntityRepository
             ->setParameters($parameters)
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function findVitaOrRogers()
+    {
+        $expr = Criteria::expr();
+        $criteria = Criteria::create();
+        $criteria->where(
+            $expr->orX(
+                $expr->eq('firstName', 'Vita'),
+                $expr->eq('firstName', 'Rogers'),
+                $expr->eq('firstName', 'Jordan')
+            )
+        );
+        return $this->matching($criteria);
     }
 }
