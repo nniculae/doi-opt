@@ -4,6 +4,7 @@ namespace BlogBundle\Repository;
 
 use BlogBundle\Entity\Client;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * ClientRepository
@@ -47,5 +48,19 @@ class ClientRepository extends \Doctrine\ORM\EntityRepository
             )
         );
         return $this->matching($criteria);
+    }
+
+    /**
+     * @return QueryBuilder
+     */
+    public function toBeModified():QueryBuilder
+    {
+        $qb = $this->createQueryBuilder('c');
+        $qb->where('c.id = 1');
+
+
+
+        return $qb;
+
     }
 }

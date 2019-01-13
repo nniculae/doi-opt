@@ -49,7 +49,7 @@ class ClientController extends Controller
     {
         $repo = $this->getDoctrine()->getRepository(Client::class);
         $collection = $repo->findVitaOrRogers();
-        $filtered = $collection->filter(function ($client) {
+        $filtered = $collection->filter(function (Client $client) {
             return ($client->getFirstName() !== 'Vita');
         });
 
@@ -64,6 +64,25 @@ class ClientController extends Controller
 
         return $this->render('BlogBundle:Client:show_all_teste.html.twig', [
             'clients' => $matched,
+        ]);
+    }
+
+    /**
+     * @Route("/qb");
+     * @return Response
+     */
+    public function testQueryBuilderAction()
+    {
+        $repo = $this->getDoctrine()->getRepository(Client::class);
+        $qb = $repo->toBeModified();
+        $qb->resetDQLPart('where');
+
+        $qb->where($qb->expr()->eq('c.id',20));
+
+        $clients = $qb->getQuery()->execute();
+
+        return $this->render('BlogBundle:Client:modify-qb.html.twig', [
+            'clients' => $clients,
         ]);
     }
 }

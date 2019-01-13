@@ -1,7 +1,7 @@
 <?php
 
 namespace BlogBundle\Controller;
-use BlogBundle\Form\Form1Type;
+use BlogBundle\Form\FormQbType;
 use BlogBundle\Form\Form2Type;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 //use Symfony\Component\Routing\Annotation\Route;
@@ -14,7 +14,7 @@ class FormsController extends Controller
      */
     public function form1Action()
     {
-        $form = $this->createForm(Form1Type::class);
+        $form = $this->createForm(FormQbType::class);
         return $this->render('BlogBundle:Forms:form1.html.twig', [
             'form' => $form->createView(),
         ]);
@@ -26,6 +26,16 @@ class FormsController extends Controller
     {
         $form = $this->createForm(Form2Type::class);
         return $this->render('BlogBundle:Forms:form2.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+    /**
+     * @Route("/form-qb")
+     */
+    public function formQbAction()
+    {
+        $form = $this->createForm(FormQbType::class);
+        return $this->render('BlogBundle:Forms:form-qb.html.twig', [
             'form' => $form->createView(),
         ]);
     }

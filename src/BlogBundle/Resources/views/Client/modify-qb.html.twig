@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+    {% block title %}
+        Modify QueryBuilder
+    {% endblock %}
+
+{% block body %}
+    <ul>
+        {% for c in clients %}
+            <li>{{ c.id }}.  {{ c.firstName }}</li>
+        {% endfor %}
+    </ul>
+
+
+
+{% endblock %}
+
+

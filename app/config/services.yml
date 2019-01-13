@@ -7,7 +7,7 @@ services:
 #service_name:
 #    class: AppBundle\Directory\ClassName
 #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
-  app.form.friend_message:
+  app.form.cacamaca:
     class: BlogBundle\Form\Form2Type
     arguments: ['@security.token_storage','@security.authorization_checker']
     tags:
